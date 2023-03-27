@@ -37,18 +37,18 @@ public class SwimmerController {
 
     }
 
-    // @PostMapping("/swimmer")
-    // public ResponseEntity postSwimmer(@RequestBody SwimmerDto swimmerDto) {
+    @PostMapping("/swimmer")
+    public ResponseEntity postSwimmer(@RequestBody SwimmerDto swimmerDto) {
         
-    //     Swimmer swimmer = swimmerService.saveSwimmer(swimmerDto);
+        Swimmer swimmer = swimmerService.saveSwimmer(swimmerDto);
 
-    //     if(swimmer == null) {
-    //         ResponseEntity.ok("result : save failed");
-    //     }
+        if(swimmer == null) {
+            ResponseEntity.ok("result : save failed");
+        }
 
-    //     return ResponseEntity.ok(swimmer);
+        return ResponseEntity.ok(swimmer);
         
-    // }
+    }
 
     
 }

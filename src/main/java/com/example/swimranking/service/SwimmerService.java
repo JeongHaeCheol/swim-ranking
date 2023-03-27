@@ -24,25 +24,24 @@ public class SwimmerService {
     
 
     public List<SwimmerDto> findSwimmersByName(String name) {
-        // return swimmerRepositoryCustom.findSwimmersByName(name);       
-        return null; 
+        return swimmerRepositoryCustom.findSwimmersByName(name);       
     }
 
-    // public Swimmer saveSwimmer(SwimmerDto swimmerDto) {
+    public Swimmer saveSwimmer(SwimmerDto swimmerDto) {
         
-    //     Swimmer swimmer = new Swimmer(swimmerDto);
+        Swimmer swimmer = new Swimmer(swimmerDto);
 
-    //     try {
-    //         swimmerRepository.saveAndFlush(swimmer);
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //         return null;
-    //     }
+        try {
+            swimmerRepository.saveAndFlush(swimmer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 
-    //     log.info("save Swimmer : " + swimmer);
-    //     return swimmer;
+        log.info("save Swimmer : " + swimmer);
+        return swimmer;
 
-    // }
+    }
 
     
 
