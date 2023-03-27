@@ -10,5 +10,7 @@ import com.example.swimranking.model.Swimmer;
 
 
 
+@Repository
 public interface SwimmerRepository extends JpaRepository<Swimmer, Integer> {
+
 }

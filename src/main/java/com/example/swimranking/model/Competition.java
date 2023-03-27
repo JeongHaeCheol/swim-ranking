@@ -10,22 +10,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import com.example.swimranking.dto.SwimmerDto;
+import com.example.swimranking.dto.CompetitionDto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
+
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name="swimmers")
+@Table(name="competitions")
 @NoArgsConstructor
-public class Swimmer {
-
-
+public class Competition {
+    
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
@@ -33,25 +34,15 @@ public class Swimmer {
 
     @NotEmpty
     private String name;
-    private Date birth;
-
-    private String club;
-
-    @NotEmpty
-    private String gender;
-    private String country;
+    private String location;
+    private Date date;
 
 
-
-    public Swimmer(SwimmerDto swimmerDto) {
-        this.name = swimmerDto.getName();
-        this.birth = swimmerDto.getBirth();
-        this.club = swimmerDto.getClub();
-        this.gender = swimmerDto.getGender();
-        this.country = swimmerDto.getCountry();
+    public Competition(CompetitionDto competitionDto) {
+        this.name = competitionDto.getName();
+        this.location = competitionDto.getLocation();
+        this.date = competitionDto.getDate();
     }
 
 
-
-    
 }
