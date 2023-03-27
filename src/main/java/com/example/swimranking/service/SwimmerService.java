@@ -8,7 +8,6 @@ import com.example.swimranking.dto.SwimmerDto;
 import com.example.swimranking.model.Swimmer;
 import com.example.swimranking.repository.SwimmerRepository;
 import com.example.swimranking.repository.SwimmerRepositoryCustom;
-import com.querydsl.core.QueryFactory;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
