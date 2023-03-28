@@ -3,7 +3,10 @@ package com.example.swimranking.dto;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import com.example.swimranking.model.Competition;
+import com.example.swimranking.model.Event;
 import com.example.swimranking.model.EventResult;
 import com.example.swimranking.model.Swimmer;
 import com.querydsl.core.annotations.QueryProjection;
@@ -21,46 +24,48 @@ public class EventResultDto {
 
     private Date birth;
 
+    // 동명이인 구별을 돕는 컬럼이기 때문에 swimmer의 club으로 할당
     private String club;
 
     private String country;
 
-    @NotEmpty
     private String gender;
 
     @NotEmpty
     private String name;
 
-    @NotEmpty
     private int swimmer_id;
 
-    @NotEmpty
-    private int competition_id;
+    private String competitionName;
 
-    @NotEmpty
-    private int event_id;
+    private String eventName;
 
-    @NotEmpty
+    private String distance;
+
+    private String stroke;
+
+    @NotNull
     private double raceTime;
 
-    @NotEmpty
     private String raceRank;
 
     @QueryProjection
-    public EventResultDto(EventResult eventResult, Date birth, String club, String country, String gender) {
+    public EventResultDto(EventResult eventResult, String club, Date birth, String country, String gender) {
         this.birth = birth;
         this.club = club;
         this.country = country;
         this.gender = gender;
         
         this.name = eventResult.getName();
-        this.swimmer_id = eventResult.getSwimmer_id();
-        this.competition_id = eventResult.getCompetition_id();
-        this.event_id = eventResult.getEvent_id();
+        this.swimmer_id = eventResult.getSwimmer().getId();
+        this.competitionName = eventResult.getCompetition().getName();
+        this.eventName = eventResult.getEvent().getName();
+        this.distance = eventResult.getEvent().getDistance();
+        this.stroke = eventResult.getEvent().getStroke();
         this.raceTime = eventResult.getRaceTime();
         this.raceRank = eventResult.getRaceRank();
     }
 
-    
+
     
 }

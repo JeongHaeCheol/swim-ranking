@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.swimranking.dto.SwimmerDto;
 import com.example.swimranking.model.QSwimmer;
-
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 

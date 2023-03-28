@@ -22,33 +22,33 @@ import lombok.extern.slf4j.Slf4j;
 public class SwimmerController {
 
 
-    private final SwimmerService swimmerService;
+   private final SwimmerService swimmerService;
 
-    @GetMapping("/swimmer")
-    public ResponseEntity getSwimmer(@RequestParam String name) {
+   @GetMapping("/swimmer")
+   public ResponseEntity getSwimmer(@RequestParam String name) {
 
-        List<SwimmerDto> result = swimmerService.findSwimmersByName(name);
+       List<SwimmerDto> result = swimmerService.findSwimmersByName(name);
 
-        if(result == null || result.isEmpty()) {
-            return ResponseEntity.ok("result : no data");
-        }
-        
-        return ResponseEntity.ok(result);
+       if(result == null || result.isEmpty()) {
+           return ResponseEntity.ok("result : no data");
+       }
+       
+       return ResponseEntity.ok(result);
 
-    }
+   }
 
-    @PostMapping("/swimmer")
-    public ResponseEntity postSwimmer(@RequestBody SwimmerDto swimmerDto) {
-        
-        Swimmer swimmer = swimmerService.saveSwimmer(swimmerDto);
+   @PostMapping("/swimmer")
+   public ResponseEntity postSwimmer(@RequestBody SwimmerDto swimmerDto) {
+       
+       Swimmer swimmer = swimmerService.saveSwimmer(swimmerDto);
 
-        if(swimmer == null) {
-            ResponseEntity.ok("result : save failed");
-        }
+       if(swimmer == null) {
+           ResponseEntity.ok("result : save failed");
+       }
 
-        return ResponseEntity.ok(swimmer);
-        
-    }
+       return ResponseEntity.ok(swimmer);
+       
+   }
 
     
 }

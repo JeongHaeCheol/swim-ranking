@@ -12,7 +12,8 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import static com.example.swimranking.model.QSwimmer.swimmer;
 import static com.example.swimranking.model.QEventResult.eventResult;
-
+import static com.example.swimranking.model.QEvent.event;
+import static com.example.swimranking.model.QCompetition.competition;;
 
 // QClass import by static !!!!!!!!!!!
 @Repository
@@ -22,9 +23,10 @@ public class EventResultRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
 
-    // 1. 이름으로 조회 (구별을 위해 Swimmer 엔티티와 조인)
-    public List<EventResultDto> findEventResultByName(String name) {
-        List<EventResultDto> result = queryFactory.select(Projections.constructor(EventResultDto.class, eventResult, swimmer.birth, swimmer.club, swimmer.country, swimmer.gender))
+    // 1. 이름으로 조인해서 조회 (구별을 위해 Swimmer 엔티티와 조인)
+    public List<EventResultDto> findEventResultByNameJoin(String name) {
+        List<EventResultDto> result = queryFactory.select(
+            Projections.constructor(EventResultDto.class, eventResult, swimmer.club, swimmer.birth, swimmer.country, swimmer.gender))
         .from(eventResult, swimmer)
         .where(eventResult.name.eq(swimmer.name))
         .fetch();
@@ -32,6 +34,19 @@ public class EventResultRepositoryCustom {
         return result;
 
     }
+
+        // 2. 이름으로 조회
+        public List<EventResultDto> findEventResultByName(String name) {
+            List<EventResultDto> result = queryFactory.select
+            (Projections.constructor(
+                EventResultDto.class, eventResult, eventResult.swimmer.club, eventResult.swimmer.birth, eventResult.swimmer.country, eventResult.swimmer.gender))
+            .from(eventResult)
+            .where(eventResult.name.eq(name))
+            .fetch();
+    
+            return result;
+    
+        }
     
     
 }

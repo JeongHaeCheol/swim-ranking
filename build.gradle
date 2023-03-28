@@ -24,10 +24,10 @@ repositories {
 dependencies {
 
    // queryDSL 설정
-    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
-    annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
-    annotationProcessor("jakarta.persistence:jakarta.persistence-api") // java.lang.NoClassDefFoundError(javax.annotation.Entity) 발생 대응 
-    annotationProcessor("jakarta.annotation:jakarta.annotation-api") // java.lang.NoClassDefFoundError (javax.annotation.Generated) 발생 대응 
+  implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+  annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
+  annotationProcessor("jakarta.persistence:jakarta.persistence-api") // java.lang.NoClassDefFoundError(javax.annotation.Entity) 발생 대응 
+  annotationProcessor("jakarta.annotation:jakarta.annotation-api") // java.lang.NoClassDefFoundError (javax.annotation.Generated) 발생 대응 
 
   // Swagger 3.0.0
   implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
@@ -49,12 +49,12 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
+// tasks.named('test') {
+// 	useJUnitPlatform()
+// }
 
 //def generated = 'src/main/generated'
-// querydsl 추가 시작
+// 컴파일할때마다 classpath 파일의 querydsl 범위 main에서 querydsl로 변경되는데 다시 main으로 바꿔야함
 def querydslDir = "$buildDir/generated/querydsl"
 
 querydsl {

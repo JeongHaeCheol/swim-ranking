@@ -23,7 +23,7 @@ public class SwimmerService {
     
 
     public List<SwimmerDto> findSwimmersByName(String name) {
-        return swimmerRepositoryCustom.findSwimmersByName(name);       
+        return swimmerRepositoryCustom.findSwimmersByName(name);    
     }
 
     public Swimmer saveSwimmer(SwimmerDto swimmerDto) {
