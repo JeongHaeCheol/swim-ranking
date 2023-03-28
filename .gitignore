@@ -10,7 +10,7 @@ build/
 
 ### STS ###
 .apt_generated
-.classpath
+## querydsl 떄문에 필요 .classpath
 .factorypath
 .project
 .settings
