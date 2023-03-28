@@ -37,6 +37,8 @@ public class Competition {
     private String name;
     private String location;
 
+    private int poolSize;
+
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
     private Date date;
 
@@ -45,6 +47,7 @@ public class Competition {
         this.name = competitionDto.getName();
         this.location = competitionDto.getLocation();
         this.date = competitionDto.getDate();
+        this.poolSize = competitionDto.getPoolSize();
     }
 
 

@@ -29,6 +29,7 @@ public class CompetitionDto {
     private String name;
     private String location;
     private Date date;
+    private int poolSize;
 
 
     @QueryProjection
@@ -36,6 +37,7 @@ public class CompetitionDto {
         this.name = competition.getName();
         this.location = competition.getLocation();
         this.date = competition.getDate();
+        this.poolSize = competition.getPoolSize();
     }
     
 }

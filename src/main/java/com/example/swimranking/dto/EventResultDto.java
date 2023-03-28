@@ -47,6 +47,8 @@ public class EventResultDto {
 
     private String stroke;
 
+    private int poolSize;
+
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
     private Date competitionDate;
 
@@ -61,6 +63,7 @@ public class EventResultDto {
         this.club = club;
         this.country = country;
         this.gender = gender;
+        this.poolSize = eventResult.getCompetition().getPoolSize();
         this.competitionDate = eventResult.getCompetition().getDate();
         this.ageRange = eventResult.getAgeRange();
         this.name = eventResult.getName();
@@ -91,6 +94,7 @@ public class EventResultDto {
         if(competition != null) {
             this.competitionName = competition.getName();
             this.competitionDate = competition.getDate();
+            this.poolSize = competition.getPoolSize();
         }
         if(event != null) {
             this.eventName = event.getName();
