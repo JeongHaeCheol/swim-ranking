@@ -25,11 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EventResultController {
 
-
-    // 추후 서비스로 변경
     private final EventResultService eventResultService;
-
-
 
 
     @GetMapping("/simple")
@@ -47,6 +43,7 @@ public class EventResultController {
     }
 
 
+    // 동명이인을 구별하기 위한 검색 ->  join을 사용 -> 필요없을듯? -> 연관관계 활용하는 쿼리 사용하는게 더 나을듯
     @GetMapping("/event_result")
     public ResponseEntity getEventResult(@RequestParam String name) {
 
@@ -61,7 +58,7 @@ public class EventResultController {
 
     }
 
-
+    // 이름만으로 검색 -> 연관관계 테이블을 검색에 활용하지 않음
     @GetMapping("/event_result2")
     public ResponseEntity getEventResult2(@RequestParam String name) {
 

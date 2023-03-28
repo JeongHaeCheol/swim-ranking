@@ -46,6 +46,8 @@ public class EventResult {
 
     private String club;
 
+    private String ageRange;
+
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="swimmer_id")

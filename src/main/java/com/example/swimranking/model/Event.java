@@ -27,7 +27,6 @@ public class Event {
     private int id; 
 
     
-    @NotEmpty
     private String name;
 
     @NotEmpty
@@ -36,11 +35,14 @@ public class Event {
     @NotEmpty
     private String stroke;
 
+    private boolean finCheck;
 
-    public Event(@NotEmpty String name, String distance, String stroke) {
+
+    public Event(String name, String distance, String stroke, boolean finCheck) {
         this.name = name;
         this.distance = distance;
         this.stroke = stroke;
+        this.finCheck = finCheck;
     }
 
     

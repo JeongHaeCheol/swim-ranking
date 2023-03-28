@@ -33,12 +33,15 @@ public class EventDto {
     @NotEmpty
     private String stroke;
 
+    private boolean finCheck;
+
     
     @QueryProjection
     public EventDto(Event event) {
         this.name = event.getName();
         this.distance = event.getDistance();
         this.stroke = event.getStroke();
+        this.finCheck = event.isFinCheck();
     }
 
     

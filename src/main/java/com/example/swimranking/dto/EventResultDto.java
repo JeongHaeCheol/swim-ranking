@@ -9,6 +9,7 @@ import com.example.swimranking.model.Competition;
 import com.example.swimranking.model.Event;
 import com.example.swimranking.model.EventResult;
 import com.example.swimranking.model.Swimmer;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Data;
@@ -31,6 +32,8 @@ public class EventResultDto {
 
     private String gender;
 
+    private String ageRange;
+
     @NotEmpty
     private String name;
 
@@ -44,6 +47,9 @@ public class EventResultDto {
 
     private String stroke;
 
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
+    private Date competitionDate;
+
     @NotNull
     private double raceTime;
 
@@ -55,13 +61,45 @@ public class EventResultDto {
         this.club = club;
         this.country = country;
         this.gender = gender;
-        
+        this.competitionDate = eventResult.getCompetition().getDate();
+        this.ageRange = eventResult.getAgeRange();
         this.name = eventResult.getName();
         this.swimmer_id = eventResult.getSwimmer().getId();
         this.competitionName = eventResult.getCompetition().getName();
         this.eventName = eventResult.getEvent().getName();
         this.distance = eventResult.getEvent().getDistance();
         this.stroke = eventResult.getEvent().getStroke();
+        this.raceTime = eventResult.getRaceTime();
+        this.raceRank = eventResult.getRaceRank();
+    }
+
+    @QueryProjection
+    public EventResultDto(EventResult eventResult) {
+
+        Swimmer swimmer = eventResult.getSwimmer();
+        Competition competition = eventResult.getCompetition();
+        Event event = eventResult.getEvent();
+
+        if(swimmer != null) {
+            this.birth = swimmer.getBirth();
+            this.club = swimmer.getClub();
+            this.country = swimmer.getCountry();
+            this.gender = swimmer.getGender();
+            this.swimmer_id = swimmer.getId();
+        }
+        
+        if(competition != null) {
+            this.competitionName = competition.getName();
+            this.competitionDate = competition.getDate();
+        }
+        if(event != null) {
+            this.eventName = event.getName();
+            this.distance = event.getDistance();
+            this.stroke = event.getStroke();
+        }
+     
+        this.ageRange = eventResult.getAgeRange();
+        this.name = eventResult.getName();
         this.raceTime = eventResult.getRaceTime();
         this.raceRank = eventResult.getRaceRank();
     }

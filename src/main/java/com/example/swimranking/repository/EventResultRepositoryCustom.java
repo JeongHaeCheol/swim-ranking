@@ -26,7 +26,8 @@ public class EventResultRepositoryCustom {
     // 1. 이름으로 조인해서 조회 (구별을 위해 Swimmer 엔티티와 조인)
     public List<EventResultDto> findEventResultByNameJoin(String name) {
         List<EventResultDto> result = queryFactory.select(
-            Projections.constructor(EventResultDto.class, eventResult, swimmer.club, swimmer.birth, swimmer.country, swimmer.gender))
+            Projections.constructor(
+                EventResultDto.class, eventResult, swimmer.club, swimmer.birth, swimmer.country, swimmer.gender))
         .from(eventResult, swimmer)
         .where(eventResult.name.eq(swimmer.name))
         .fetch();
@@ -39,7 +40,7 @@ public class EventResultRepositoryCustom {
         public List<EventResultDto> findEventResultByName(String name) {
             List<EventResultDto> result = queryFactory.select
             (Projections.constructor(
-                EventResultDto.class, eventResult, eventResult.swimmer.club, eventResult.swimmer.birth, eventResult.swimmer.country, eventResult.swimmer.gender))
+                EventResultDto.class, eventResult))
             .from(eventResult)
             .where(eventResult.name.eq(name))
             .fetch();
