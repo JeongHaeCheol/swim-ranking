@@ -1,15 +1,16 @@
 package com.example.swimranking.dto;
 import java.util.Date;
 
-import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 
 import com.example.swimranking.model.Swimmer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -17,6 +18,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SwimmerDto {
 
     @NotEmpty

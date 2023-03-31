@@ -1,16 +1,11 @@
 package com.example.swimranking.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 import com.example.swimranking.model.Event;
 import com.querydsl.core.annotations.QueryProjection;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +16,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EventDto {
     
     

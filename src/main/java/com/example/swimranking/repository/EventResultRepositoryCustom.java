@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.example.swimranking.dto.EventResultDto;
-
+import com.example.swimranking.model.Competition;
+import com.example.swimranking.model.Event;
+import com.example.swimranking.model.EventResult;
+import com.example.swimranking.model.Swimmer;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -48,6 +51,6 @@ public class EventResultRepositoryCustom {
             return result;
     
         }
-    
+
     
 }

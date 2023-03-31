@@ -83,8 +83,20 @@ public class EventResultController {
         }
 
         return ResponseEntity.ok(result);
-        
     }
 
+    @PostMapping("/result")
+    public ResponseEntity postResult(@RequestBody EventResultDto eventResultDto) {
+        
+
+        log.info("### save postResult : " + eventResultDto);
+        boolean result = eventResultService.SaveEventResultByRelation(eventResultDto);
+
+        if(result == false) {
+            ResponseEntity.ok("result : save failed");
+        }
+
+        return ResponseEntity.ok(result);
+    }
     
 }

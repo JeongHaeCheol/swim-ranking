@@ -12,6 +12,7 @@ import javax.validation.constraints.NotEmpty;
 import com.example.swimranking.model.Competition;
 import com.querydsl.core.annotations.QueryProjection;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CompetitionDto {
  
     @NotEmpty
