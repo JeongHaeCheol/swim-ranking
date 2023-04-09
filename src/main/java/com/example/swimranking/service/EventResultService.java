@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.swimranking.dto.EventResultDto;
 import com.example.swimranking.dto.SwimmerDto;
+import com.example.swimranking.dto.TrendChangeDto;
 import com.example.swimranking.model.Competition;
 import com.example.swimranking.model.Event;
 import com.example.swimranking.model.EventResult;
@@ -31,6 +32,13 @@ public class EventResultService {
     private final EventRepositoryCustom eventRepositoryCustom;
     private final EventRepository eventRepository;
     private final SwimmerRepository swimmerRepository;
+
+
+
+    public List<TrendChangeDto> getTrend(int swimmerId, int eventId){
+        return eventResultRepositoryCustom.getTrend(swimmerId, eventId);
+
+    }
 
     public List<EventResultDto> findEventResultByNameJoin(String name) {
         return eventResultRepositoryCustom.findEventResultByNameJoin(name);

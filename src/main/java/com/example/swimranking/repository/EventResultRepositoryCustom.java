@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.example.swimranking.dto.EventResultDto;
+import com.example.swimranking.dto.TrendChangeDto;
 import com.example.swimranking.model.Competition;
 import com.example.swimranking.model.Event;
 import com.example.swimranking.model.EventResult;
@@ -22,35 +23,44 @@ import static com.example.swimranking.model.QCompetition.competition;;
 @Repository
 @RequiredArgsConstructor
 public class EventResultRepositoryCustom {
-    
-    private final JPAQueryFactory queryFactory;
 
+    private final JPAQueryFactory queryFactory;
 
     // 1. 이름으로 조인해서 조회 (구별을 위해 Swimmer 엔티티와 조인)
     public List<EventResultDto> findEventResultByNameJoin(String name) {
         List<EventResultDto> result = queryFactory.select(
-            Projections.constructor(
-                EventResultDto.class, eventResult, swimmer.club, swimmer.birth, swimmer.country, swimmer.gender))
-        .from(eventResult, swimmer)
-        .where(eventResult.name.eq(swimmer.name))
-        .fetch();
+                Projections.constructor(
+                        EventResultDto.class, eventResult, swimmer.club, swimmer.birth, swimmer.country,
+                        swimmer.gender))
+                .from(eventResult, swimmer)
+                .where(eventResult.name.eq(swimmer.name))
+                .fetch();
 
         return result;
 
     }
 
-        // 2. 이름으로 조회
-        public List<EventResultDto> findEventResultByName(String name) {
-            List<EventResultDto> result = queryFactory.select
-            (Projections.constructor(
+    // 2. 이름으로 조회
+    public List<EventResultDto> findEventResultByName(String name) {
+        List<EventResultDto> result = queryFactory.select(Projections.constructor(
                 EventResultDto.class, eventResult))
-            .from(eventResult)
-            .where(eventResult.name.eq(name))
-            .fetch();
-    
-            return result;
-    
-        }
+                .from(eventResult)
+                .where(eventResult.name.eq(name))
+                .orderBy(eventResult.competition.date.desc())
+                .fetch();
 
-    
+        return result;
+    }
+
+    // 3. 기록변화 추이
+    public List<TrendChangeDto> getTrend(int swimmerId, int eventId) {
+        List<TrendChangeDto> result = queryFactory.select(Projections.constructor(
+                TrendChangeDto.class, eventResult))
+                .from(eventResult)
+                .where(eventResult.swimmer.id.eq(swimmerId), eventResult.event.id.eq(eventId))
+                .orderBy(eventResult.competition.date.desc())
+                .fetch();
+        return result;
+    }
+
 }

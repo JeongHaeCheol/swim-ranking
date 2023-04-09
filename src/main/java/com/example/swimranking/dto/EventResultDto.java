@@ -103,7 +103,12 @@ public class EventResultDto {
         if(event != null) {
             this.eventName = event.getName();
             this.distance = event.getDistance();
-            this.stroke = event.getStroke();
+            if(event.isFinCheck()){
+                this.stroke = "핀" + event.getStroke();
+            }
+            else {
+                this.stroke = event.getStroke();
+            }
         }
      
         this.ageRange = eventResult.getAgeRange();
