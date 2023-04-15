@@ -22,6 +22,12 @@ public class SwimmerService {
     private final SwimmerRepositoryCustom swimmerRepositoryCustom;
     
 
+
+
+    public long countSwimmer() {
+        return swimmerRepository.count();
+    }
+
     public List<SwimmerDto> findSwimmersByName(String name) {
         return swimmerRepositoryCustom.findSwimmersByName(name);    
     }
@@ -42,7 +48,17 @@ public class SwimmerService {
 
     }
 
-    
+    public List<Swimmer> saveSwimmers(List<Swimmer> swimmerList) {
+        try {
+            swimmerRepository.saveAllAndFlush(swimmerList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        log.info("save swimmerList : " + swimmerList);
+        return swimmerList;
+    }
 
     
 }
