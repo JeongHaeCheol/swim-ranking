@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import com.example.swimranking.model.Event;
 import com.example.swimranking.model.Swimmer;
-import com.example.swimranking.model.UnOfficialRecord;
+import com.example.swimranking.model.SwimRecord;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
 
@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @ToString
 @NoArgsConstructor
 @Slf4j
-public class UnOfficialRecordDto {
+public class SwimRecordDto {
 
     @NotEmpty
     private String name;
@@ -43,15 +43,17 @@ public class UnOfficialRecordDto {
     @NotNull
     private double record;
 
+    private boolean officialCheck;
+
     private Date measuredDate;
 
 
 
     @QueryProjection
-    public UnOfficialRecordDto(UnOfficialRecord unOfficialRecord) {
+    public SwimRecordDto(SwimRecord swimRecord) {
 
-        Swimmer swimmer = unOfficialRecord.getSwimmer();
-        Event event = unOfficialRecord.getEvent();
+        Swimmer swimmer = swimRecord.getSwimmer();
+        Event event = swimRecord.getEvent();
 
         String fin = "";
 
@@ -67,10 +69,10 @@ public class UnOfficialRecordDto {
             this.gender = swimmer.getGender();
             this.country = swimmer.getCountry();
         }
-
-        this.name = unOfficialRecord.getName();
-        this.record = unOfficialRecord.getRecord();
-        this.measuredDate = unOfficialRecord.getMeasuredDate();
+        this.officialCheck =swimRecord.isOfficialCheck();
+        this.name = swimRecord.getName();
+        this.record = swimRecord.getRecord();
+        this.measuredDate = swimRecord.getMeasuredDate();
     }
 
 }

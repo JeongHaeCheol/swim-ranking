@@ -24,9 +24,9 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name="unofficial_record")
+@Table(name="swim_record")
 @NoArgsConstructor
-public class UnOfficialRecord {
+public class SwimRecord {
     
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -49,6 +49,7 @@ public class UnOfficialRecord {
     @NotNull
     private double record;
 
+    private boolean officialCheck;
 
     private Date measuredDate;
 

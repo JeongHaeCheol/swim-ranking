@@ -47,7 +47,7 @@ public class SwimmingPool {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name="swimming_pool_id")
     @OrderBy("record ASC")
-    private List<UnOfficialRecord> unOfficialRecord;
+    private List<SwimRecord> SwimRecord;
 
     
     

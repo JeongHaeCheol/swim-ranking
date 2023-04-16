@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.swimranking.model.SwimmingPool;
-import com.example.swimranking.model.UnOfficialRecord;
+import com.example.swimranking.model.SwimRecord;
 import com.example.swimranking.repository.SwimmingPoolRepository;
-import com.example.swimranking.repository.UnOfficialRecordRepository;
+import com.example.swimranking.repository.SwimRecordRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 public class SwimmingPoolService {
 
     private final SwimmingPoolRepository swimmingPoolRepository;
-
-    private final UnOfficialRecordRepository unOfficialRecordRepository;
-
 
 
     public long countSwimmingPool() {
@@ -61,37 +58,7 @@ public class SwimmingPoolService {
         return swimmingPool;
     }
 
-    public SwimmingPool addUnOfficialRecord(String name, UnOfficialRecord newRecord) {
-
-        SwimmingPool swimmingPool = null;
-        List<UnOfficialRecord> unOfficialRecordList = null;
-
-        try {
-            swimmingPool = findSwimmingPoolByName(name);
-            unOfficialRecordList = swimmingPool.getUnOfficialRecord();
-
-            if(unOfficialRecordList != null){
-                for(UnOfficialRecord ur : unOfficialRecordList) {
-                    if(ur.getSwimmer() != null 
-                    && newRecord.getSwimmer() != null 
-                    && ur.getSwimmer().getId() == newRecord.getId()) {
-                        log.info("### Add new UnOfficialRecord Failed : " + newRecord.getSwimmer() + "is already Exist" );
-                        return null;
-                    }
-                }
-
-            }
-            unOfficialRecordList.add(newRecord);
-            swimmingPool.setUnOfficialRecord(unOfficialRecordList);
-            swimmingPoolRepository.saveAndFlush(swimmingPool);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        log.info("update SwimmingPool (UnOfficialRecord) : " + swimmingPool);
-        return swimmingPool;
-    }
+   
 
     
 }

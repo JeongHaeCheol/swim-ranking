@@ -2,6 +2,7 @@ package com.example.swimranking.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -24,6 +25,12 @@ public class EventService {
     private List<String> strokeList = new ArrayList<>();
 
     private List<Event> eventList = new ArrayList<>();
+
+
+    public Optional<Event> findEventById(int id) {
+        return eventRepository.findById(id);
+    }
+
 
     @PostConstruct
     public void init() {
