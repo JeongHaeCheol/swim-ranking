@@ -8,6 +8,10 @@ build/
 
 !**/src/main/generated/**
 
+
+### properties 보안고려 ###
+.properties
+
 ### STS ###
 .apt_generated
 ## querydsl 떄문에 필요 .classpath

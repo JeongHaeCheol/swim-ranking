@@ -7,8 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import com.example.swimranking.model.Competition;
 import com.example.swimranking.model.Event;
-import com.example.swimranking.model.EventResult;
-import com.example.swimranking.model.Swimmer;
+import com.example.swimranking.model.CompetitionRecord;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
 
@@ -25,11 +24,11 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EventResultDto {
+public class CompetitionRecordDto {
 
     private Date birth;
 
-    // 동명이인 구별을 돕는 컬럼이기 때문에 swimmer의 club으로 할당
+    // 동명이인 구별을 돕는 컬럼이기 때문에 Member의 club으로 할당
     private String club;
 
     private String country;
@@ -40,8 +39,6 @@ public class EventResultDto {
 
     @NotEmpty
     private String name;
-
-    private int swimmer_id;
 
     private String competitionName;
 
@@ -62,38 +59,29 @@ public class EventResultDto {
     private String raceRank;
 
     @QueryProjection
-    public EventResultDto(EventResult eventResult, String club, Date birth, String country, String gender) {
+    public CompetitionRecordDto(CompetitionRecord payload, String club, Date birth, String country, String gender) {
         this.birth = birth;
         this.club = club;
         this.country = country;
         this.gender = gender;
-        this.poolSize = eventResult.getCompetition().getPoolSize();
-        this.competitionDate = eventResult.getCompetition().getDate();
-        this.ageRange = eventResult.getAgeRange();
-        this.name = eventResult.getName();
-        this.swimmer_id = eventResult.getSwimmer().getId();
-        this.competitionName = eventResult.getCompetition().getName();
-        this.eventName = eventResult.getEvent().getName();
-        this.distance = eventResult.getEvent().getDistance();
-        this.stroke = eventResult.getEvent().getStroke();
-        this.raceTime = eventResult.getRaceTime();
-        this.raceRank = eventResult.getRaceRank();
+        this.poolSize = payload.getCompetition().getPoolSize();
+        this.competitionDate = payload.getCompetition().getDate();
+        this.ageRange = payload.getAgeRange();
+        this.name = payload.getName();
+        this.competitionName = payload.getCompetition().getName();
+        this.eventName = payload.getEvent().getName();
+        this.distance = payload.getEvent().getDistance();
+        this.stroke = payload.getEvent().getStroke();
+        this.raceTime = payload.getRaceTime();
+        this.raceRank = payload.getRaceRank();
     }
 
     @QueryProjection
-    public EventResultDto(EventResult eventResult) {
+    public CompetitionRecordDto(CompetitionRecord payload) {
 
-        Swimmer swimmer = eventResult.getSwimmer();
-        Competition competition = eventResult.getCompetition();
-        Event event = eventResult.getEvent();
+        Competition competition = payload.getCompetition();
+        Event event = payload.getEvent();
 
-        if(swimmer != null) {
-            this.birth = swimmer.getBirth();
-            this.club = swimmer.getClub();
-            this.country = swimmer.getCountry();
-            this.gender = swimmer.getGender();
-            this.swimmer_id = swimmer.getId();
-        }
         
         if(competition != null) {
             this.competitionName = competition.getName();
@@ -111,10 +99,10 @@ public class EventResultDto {
             }
         }
      
-        this.ageRange = eventResult.getAgeRange();
-        this.name = eventResult.getName();
-        this.raceTime = eventResult.getRaceTime();
-        this.raceRank = eventResult.getRaceRank();
+        this.ageRange = payload.getAgeRange();
+        this.name = payload.getName();
+        this.raceTime = payload.getRaceTime();
+        this.raceRank = payload.getRaceRank();
     }
 
     

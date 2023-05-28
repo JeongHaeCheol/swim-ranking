@@ -6,8 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.example.swimranking.model.Event;
-import com.example.swimranking.model.Swimmer;
-import com.example.swimranking.model.SwimRecord;
+import com.example.swimranking.model.UnOfficialRecord;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
 
@@ -50,10 +49,10 @@ public class SwimRecordDto {
 
 
     @QueryProjection
-    public SwimRecordDto(SwimRecord swimRecord) {
+    public SwimRecordDto(UnOfficialRecord payload) {
 
-        Swimmer swimmer = swimRecord.getSwimmer();
-        Event event = swimRecord.getEvent();
+
+        Event event = payload.getEvent();
 
         String fin = "";
 
@@ -63,16 +62,10 @@ public class SwimRecordDto {
             this.event = eventStr;
         }
 
-        if (swimmer != null) {
-            this.birth = swimmer.getBirth();
-            this.club = swimmer.getClub();
-            this.gender = swimmer.getGender();
-            this.country = swimmer.getCountry();
-        }
-        this.officialCheck =swimRecord.isOfficialCheck();
-        this.name = swimRecord.getName();
-        this.record = swimRecord.getRecord();
-        this.measuredDate = swimRecord.getMeasuredDate();
+        this.officialCheck =payload.isOfficialCheck();
+        this.name = payload.getName();
+        this.record = payload.getRecord();
+        this.measuredDate = payload.getMeasuredDate();
     }
 
 }

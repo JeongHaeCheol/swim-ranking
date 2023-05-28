@@ -36,11 +36,11 @@ public class CompetitionDto {
 
 
     @QueryProjection
-    public CompetitionDto(Competition competition) {
-        this.name = competition.getName();
-        this.location = competition.getLocation();
-        this.date = competition.getDate();
-        this.poolSize = competition.getPoolSize();
+    public CompetitionDto(Competition payload) {
+        this.name = payload.getName();
+        this.location = payload.getLocation();
+        this.date = payload.getDate();
+        this.poolSize = payload.getPoolSize();
     }
     
 }

@@ -2,7 +2,7 @@ package com.example.swimranking.dto;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.example.swimranking.model.SwimRecord;
+import com.example.swimranking.model.UnOfficialRecord;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ import lombok.ToString;
 public class RequestSwimRecordDto {
 
 
-    private SwimRecord swimRecord;
+    private UnOfficialRecord swimRecord;
 
     @NotEmpty
     private String SwimmingPoolName;

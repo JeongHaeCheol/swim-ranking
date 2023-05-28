@@ -8,8 +8,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
 
-import static com.example.swimranking.model.QSwimmer.swimmer;
-import static com.example.swimranking.model.QEventResult.eventResult;
 import static com.example.swimranking.model.QEvent.event;
 import static com.example.swimranking.model.QCompetition.competition;;
 

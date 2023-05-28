@@ -1,5 +1,7 @@
 package com.example.swimranking.service;
 
+import java.util.Optional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,15 +12,27 @@ import com.example.swimranking.model.Member;
 import com.example.swimranking.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
+
+
+    public Member findByEmail(String email) {
+        Member member = memberRepository.findByEmail(email).orElse(null);
+        return member;
+    }
+
     public MemberResponseDto getMyInfoBySecurity() {
+
+        log.info("### ID : " + SecurityUtil.getCurrentMemberId());
+
         return memberRepository.findById(SecurityUtil.getCurrentMemberId())
                 .map(MemberResponseDto::of)
                 .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));

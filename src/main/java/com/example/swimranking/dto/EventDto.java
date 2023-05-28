@@ -34,11 +34,11 @@ public class EventDto {
 
     
     @QueryProjection
-    public EventDto(Event event) {
-        this.name = event.getName();
-        this.distance = event.getDistance();
-        this.stroke = event.getStroke();
-        this.finCheck = event.isFinCheck();
+    public EventDto(Event payload) {
+        this.name = payload.getName();
+        this.distance = payload.getDistance();
+        this.stroke = payload.getStroke();
+        this.finCheck = payload.isFinCheck();
     }
 
     

@@ -31,6 +31,10 @@ public class EventService {
         return eventRepository.findById(id);
     }
 
+    public List<Event> findAll() {
+        return eventRepository.findAll();
+    }
+
 
     @PostConstruct
     public void init() {
@@ -88,6 +92,7 @@ public class EventService {
                     }
                     event.setDistance(distance.toString());
                     event.setStroke(stroke);
+                    event.setName(stroke + " " + distance.toString());
                     eventList.add(event);
                 }
             }
@@ -117,6 +122,7 @@ public class EventService {
                 }
                 event.setDistance(distance.toString());
                 event.setStroke("자유형");
+                event.setName("자유형 " + distance.toString());
                 eventList.add(event);
             }
         }

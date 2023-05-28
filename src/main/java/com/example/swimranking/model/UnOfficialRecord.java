@@ -1,6 +1,6 @@
 package com.example.swimranking.model;
 
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,31 +24,29 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name="swimming_pool")
+@Table(name="swim_record")
 @NoArgsConstructor
-public class SwimmingPool {
-
-
+public class UnOfficialRecord {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column
+    private int id; 
 
     @NotEmpty
-    @Column(nullable = false, unique= true)
     private String name;
 
-    private String location;
 
-    private int poolSize;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="event_id")
+    private Event event;
 
-    private int swimmerCount;
+    //NotEmpty는 String에만 사용 null 과 ""을 다 배제하기 때문에
+    @NotNull
+    private double record;
 
-    private String url;
+    private boolean officialCheck;
 
-    @OneToMany
-    @JoinColumn(name="member_id")
-    private List<Member> member;
+    private Date measuredDate;
 
-    
-    
 }

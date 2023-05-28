@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 
 import com.example.swimranking.model.Competition;
-import com.example.swimranking.model.EventResult;
+import com.example.swimranking.model.CompetitionRecord;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
 
@@ -36,13 +36,13 @@ public class TrendChangeDto {
 
 
     @QueryProjection
-    public TrendChangeDto(EventResult eventResult) {
-        Competition competition = eventResult.getCompetition();
+    public TrendChangeDto(CompetitionRecord payload) {
+        Competition competition = payload.getCompetition();
         if(competition != null) {
             this.date = competition.getDate();
             this.competitionName = competition.getName();
         }   
-        this.raceTime = eventResult.getRaceTime();
+        this.raceTime = payload.getRaceTime();
     }
 
 

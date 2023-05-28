@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.swimranking.model.SwimmingPool;
-import com.example.swimranking.model.SwimRecord;
+import com.example.swimranking.model.UnOfficialRecord;
 import com.example.swimranking.repository.SwimmingPoolRepository;
-import com.example.swimranking.repository.SwimRecordRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

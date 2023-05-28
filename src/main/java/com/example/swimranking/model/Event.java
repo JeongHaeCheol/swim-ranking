@@ -17,7 +17,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name="events")
+@Table(name="event")
 @NoArgsConstructor
 public class Event {
     

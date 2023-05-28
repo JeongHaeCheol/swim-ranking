@@ -6,19 +6,21 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class MemberResponseDto {
     private String email;
     private String nickname;
 
-    public static MemberResponseDto of(Member member) {
+    public static MemberResponseDto of(Member payload) {
         return MemberResponseDto.builder()
-                .email(member.getEmail())
-                .nickname(member.getNickname())
+                .email(payload.getEmail())
+                .nickname(payload.getNickname())
                 .build();
     }
 }

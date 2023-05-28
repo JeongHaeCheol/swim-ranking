@@ -13,8 +13,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
+@Slf4j
 public class JwtFilter extends OncePerRequestFilter {
     public static final String AUTHORIZATION_HEADER = "Authorization";
     public static final String BEARER_PREFIX = "Bearer ";
@@ -32,22 +34,26 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String jwt = resolveToken(request);
+        log.info("jwt test " + 0);
+
 
         if (StringUtils.hasText(jwt)) {
 
             // 토큰 유효기간 만료시 Refresh 토큰 유효기간을 검증하고 유효하면 새토큰 발행
             if (!tokenProvider.validateToken(jwt)) {
                 jwt = tokenProvider.validateRefreshToken(jwt);
-
+                log.info("jwt test " + 1);
                 // Refresh도 유효하여 새토큰 발행시
                 if (jwt != null) {
                     Authentication authentication = tokenProvider.getAuthentication(jwt);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
+                    log.info("jwt test " + 2);
                 }
             // Access 토큰이 유효할때
             } else {
                 Authentication authentication = tokenProvider.getAuthentication(jwt);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+                log.info("jwt test " + 3);
             }
         }
 

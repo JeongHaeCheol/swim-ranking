@@ -24,7 +24,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name="competitions")
+@Table(name="competition")
 @NoArgsConstructor
 public class Competition {
     
