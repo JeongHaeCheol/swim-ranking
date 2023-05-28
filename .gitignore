@@ -10,7 +10,7 @@ build/
 
 
 ### properties 보안고려 ###
-.properties
+!**/src/main/resources/**
 
 ### STS ###
 .apt_generated

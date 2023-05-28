@@ -16,14 +16,10 @@ import springfox.documentation.spring.web.plugins.Docket;
 public class SwaggerConfiguration {
     
 
-    //http://localhost:8089/swagger-ui/index.html
+    //http://localhost:port/swagger-ui/index.html
 	
 	 @Bean public Docket api() { return new Docket(DocumentationType.OAS_30)
 	 .select() .apis(RequestHandlerSelectors.any()) .paths(PathSelectors.any())
 	 .build(); }
 	 
-	 @PostConstruct
-	 public void init() {
-		log.info("### Swagger URL : http://localhost:8089/swagger-ui/index.html");
-	 }
 }

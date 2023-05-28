@@ -8,8 +8,10 @@ FROM amazoncorretto:11
 
 WORKDIR .
 
-ARG JAR_PATH=./build/libs
+COPY . .
 
-COPY ${JAR_PATH}/swim-ranking-0.0.1-SNAPSHOT ${JAR_PATH}/swim-ranking-0.0.1-SNAPSHOT
+RUN chmod +x gradlew
+
+RUN ./gradlew build
 
 CMD ["java","-jar","./build/libs/swim-ranking-0.0.1-SNAPSHOT"]

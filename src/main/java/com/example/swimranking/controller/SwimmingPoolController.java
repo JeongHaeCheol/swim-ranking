@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.swimranking.dto.RequestSwimRecordDto;
 import com.example.swimranking.dto.SwimRecordDto;
@@ -23,7 +25,8 @@ import com.example.swimranking.service.SwimmingPoolService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Controller("/swimming-pool")
+@RestController
+@RequestMapping("/swimming-pool")
 @RequiredArgsConstructor
 @Slf4j
 public class SwimmingPoolController {

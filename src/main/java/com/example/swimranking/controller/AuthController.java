@@ -43,10 +43,6 @@ public class AuthController {
     }
 
 
-    // @PostMapping("/refresh")
-    // public ResponseEntity<TokenDto> refreshToken(@RequestBody MemberRequestDto requestDto) {
-    //     return ResponseEntity.ok(authService.login(requestDto));
-    // }
 
 
 }

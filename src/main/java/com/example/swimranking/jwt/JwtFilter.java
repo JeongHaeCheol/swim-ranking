@@ -34,7 +34,6 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String jwt = resolveToken(request);
-        log.info("jwt test " + 0);
 
 
         if (StringUtils.hasText(jwt)) {
@@ -42,18 +41,17 @@ public class JwtFilter extends OncePerRequestFilter {
             // 토큰 유효기간 만료시 Refresh 토큰 유효기간을 검증하고 유효하면 새토큰 발행
             if (!tokenProvider.validateToken(jwt)) {
                 jwt = tokenProvider.validateRefreshToken(jwt);
-                log.info("jwt test " + 1);
                 // Refresh도 유효하여 새토큰 발행시
                 if (jwt != null) {
                     Authentication authentication = tokenProvider.getAuthentication(jwt);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
-                    log.info("jwt test " + 2);
+    
                 }
             // Access 토큰이 유효할때
             } else {
                 Authentication authentication = tokenProvider.getAuthentication(jwt);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                log.info("jwt test " + 3);
+
             }
         }
 

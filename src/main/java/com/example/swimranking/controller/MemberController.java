@@ -16,8 +16,8 @@ import com.example.swimranking.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 @RequestMapping("/member")
 public class MemberController {
 
