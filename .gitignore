@@ -11,6 +11,8 @@ build/
 
 ### properties 보안고려 ###
 .properties
+src/main/resources/application.properties
+
 
 ### STS ###
 .apt_generated
