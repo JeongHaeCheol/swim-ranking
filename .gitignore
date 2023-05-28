@@ -6,11 +6,11 @@ build/
 !**/src/test/**/build/
 
 
-!**/src/main/generated/**
+**/src/main/generated/**
 
 
 ### properties 보안고려 ###
-!**/src/main/resources/**
+.properties
 
 ### STS ###
 .apt_generated
